@@ -106,13 +106,13 @@
 		</style>
 	</head>
 	<body class = "color_z">
-		<nav class="nav">
+		<nav id="layerMax" class="nav">
 			<div class="container">
 			  <!--<img src="../static/images/cash.png">-->
 			</div>
         </nav>
 <section id="banner">
-<img src="../static/images/logo.png" style="margin-left: 5%; margin-bottom: 20px; margin-top: -3%; transform:translate(0px,70px);" ALIGN=LEFT>
+<img src="../static/images/GERB.svg" class="logo" ALIGN=LEFT style="transform: scale(2) translate(0,150px);margin-left: 70%;opacity: 0.5;">
         <div class="inner split">
 					<section>
 <form id="form" name="form" role="form" action="{% url 'get_Info' %}" text-align="center" method="post" class="center-block fon" style="-moz-linear-gradient(45deg, #5fe96b 0%, #e8fd28 100%); margin: 0 auto">
@@ -120,16 +120,18 @@
 
   <div class="row">
 
-    <div class="form-group text-center">
-        <p align="center"><h1 style="transform: scale(1.4) translate(0px,-50px);"><font class="font1" color="#ffffff">Посмотрите, какую часть услуги вы бы могли оплатить.</font></h1></p>
-        <p align="center"><h4><font class="font2" color="#ffffff">Заполните поля снизу, чтобы увидеть свой вклад в развитие.</font></h4></p>
+    <div style=>
+        <p align="center"><h1 style="transform: scale(1.4) translate(-60px,-300px);text-align: center;"><font class="font1" color="#ffffff">Посмотрите, какую часть услуги вы бы могли оплатить.</font></h1></p>
+        <p align="center"><h4 style="transform: translate(-85px,-300px);text-align: center;"><font class="font2" color="#ffffff">Заполните поля снизу, чтобы увидеть свой вклад в развитие.</font></h4></p>
       <div class="control-group required">
 
         <div class="controls" style="margin-bottom: 10px">
 
 
+            <p></p>
+            <p></p>
           <label class="form-control visually-hidden bg-info" for="inlineFormSelectPref"></label>
-                    <select class="bg-white text-dark" id="region" name = "region" value ="{{ region }}">
+                    <select class="bg-white text-dark" style="transform: translate(-100px,-300px);" id="region" name = "region" value ="{{ region }}">
                             <script type="text/javascript">
                   var regions = {0: 'Республика Адыгея', 1: 'Республика Башкортостан', 2: 'Республика Бурятия', 3: 'Республика Алтай',
                    4: 'Республика Дагестан', 5: 'Республика Ингушетия', 6: 'Кабардино-Балкарская Республика',
@@ -159,13 +161,9 @@
 
         </div>
         <div class="form-group" style="margin-bottom: 10px">
-
-
-          <input class="bg-white text-dark" placeholder="Зарплата" name="salary" value = "{{ salary }}" id="salary" maxlength="30" type="text"/>
-
-
+          <input class="bg-white text-dark" style="transform: translate(-100px,-300px);" placeholder="Зарплата" name="salary" value = "{{ salary }}" id="salary" maxlength="30" type="text"/>
         </div>
-          <a href="#main-table"><input class="btn btn-success" type="submit" class="button" value="Просмотреть" /></a>
+          <a href="#main-table"><input class="btn btn-success" style="transform: translate(50px,-300px);" type="submit" class="button" value="Просмотреть" /></a>
       </div>
     </div>
   </div>
