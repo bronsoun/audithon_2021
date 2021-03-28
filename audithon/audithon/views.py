@@ -60,10 +60,7 @@ def get_Info(request):
 
         date = '2016-15-07'
         tax = int(salary) * 0.13
-        if period == 1:
-            tax *= 3
-        if period == 2:
-            tax *= 12
+
 
 
         # magic for date
@@ -82,7 +79,7 @@ def get_Info(request):
             kod_for_url = '0' + kod_for_url
 
         # creating url_api by region and price
-        url = 'https://api.spending.gov.ru/v1/contracts/search/?customerregion='
+        url = 'https://api.spending.gov.ru/v1/contracts/search/?currentstage=EC&customerregion='
         reg_for_url = kod_for_url
         date_url = '&daterange='
         api = url + str(reg_for_url) + date_url + date_for_url
@@ -101,6 +98,8 @@ def get_Info(request):
 
         # create dataframe2
         paid = tax / df.loc[:, 'price'] * 100
+        paidk = tax / df.loc[:, 'price'] * 100 * 3
+        paidy = tax / df.loc[:, 'price'] * 100 * 12
 
         if 'economic_sectors' in df.columns:
             economic_sectors = []
@@ -122,20 +121,37 @@ def get_Info(request):
         else:
             contract_info = df[['price']]
 
+        contract_url = []
+        for i in range(len(contract_info)):
+            contract_url.append('<td onclick = "document.location=\''+contract_info['contractUrl'][i]+"'"+'">'+contract_info['contractUrl'][i]+'< / td >')
+
+
+
+        contract_info['contractUrl'] = contract_url
         contract_info['name_of_products'] = name
         if 'economic_sectors' in df.columns:
             contract_info['economic_sectors'] = economic_sectors
         contract_info['customer'] = customer
         contract_info['paid'] = paid
+        contract_info['paid_k'] = paidk
+        contract_info['paid_y'] = paidy
 
-        contract_info = contract_info[contract_info['paid'] < 100].sort_values(by=['price'],
-                                                                               ascending=False).reset_index(drop=True)
+        contract_info = contract_info[contract_info['paid_y'] < 100].sort_values(by=['price'],
+                                                                                 ascending=False).reset_index(drop=True)
 
-        user_info = {'region': region, 'tax': tax}
-        print(user_info)
+        fin_table = contract_info
+        fin_table.columns = ["Ссылка на контракт", "Стоимость, руб", "Наименование услуги/продукта",
+                             "Экономический сектор", "Заказчик", "Ваш вклад за месяц, %", "Ваш вклад за квартал, %",
+                             "Ваш вклад за год,%"]
+
+        tax_month = tax
+        tax_cvartal = tax * 3
+        tax_year = tax * 12
+
+        taxes = {'tax_month': tax_month, 'tax_cvartal': tax_cvartal, 'tax_year': tax_year}
 
         table0 = {'table': [contract_info.to_html(classes='data')], 'titles': contract_info.columns.values}
-        table = {'table': contract_info.to_html()}
+        table = {'table': fin_table.to_html(), 'tax_month': tax_month}
         context = {'graph': graph}
 
     elif request.POST['salary'] == '':

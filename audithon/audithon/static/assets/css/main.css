@@ -15,14 +15,14 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
-		
+
 	}
 
 	.info {
 		display: none;
 	  }
 
-	
+
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block;
@@ -1819,7 +1819,7 @@ border-bottom-right-radius: 20px;
 		outline: 0;
 		padding: 0 1em;
 		text-decoration: none;
-		width: 100%;
+		width: 106%;
 	}
 
 		input[type="text"]:invalid,
@@ -2635,11 +2635,14 @@ border-bottom-right-radius: 20px;
 
 /* Banner */
 
-	#banner {
+#layerMax{
+	z-index: 9999;
+}
 
+	#banner {
 		background-size: 75px 75px, cover;
 		background-color: rgb(90, 109, 218);
-		padding: 10em 0 10em;
+		padding: 1em;
 	}
 
 		#banner h2 {
@@ -2753,5 +2756,6 @@ border-bottom-right-radius: 20px;
          font-family: 'Prata', serif;
     }
 .font2 {
-         font-family: 'Old Standard TT', serif;
-}
+		font-family: 'Old Standard TT', serif;
+	}
+
